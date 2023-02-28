@@ -1,0 +1,15 @@
+<div class="service" *ngFor="let service of services">
+  <h2 class="service__route">{{ service.routeMnemonic }}</h2>
+  <p class="service__status">Situação: {{ service.predictionType == "DEPARTURE" ? 'PARTIDA' : 'CHEGADA' }}</p>
+  <p class="service__vehicles">Veículos: {{ service.activeVehicles == 0 ? 'Nenhum veículo disponível' : service.activeVehicles }}</p>
+ 
+  <ul class="vehicle-list">
+    <li class="vehicle" *ngFor="let vehicle of service.vehicles">
+      <p class="vehicle__prefix">Linha: {{ vehicle.prefix  }}</p>
+      <p class="vehicle__plate">Placa: {{ vehicle.plate }}</p>
+      <p class="vehicle__accessibility">Acessibilidade: {{ vehicle.wheelchair ? 'Sim' : 'Não' }}</p>
+      <p class="vehicle__climatized">Veículo climatizado: {{ vehicle.climatized ? 'Sim' : 'Não' }}</p>
+      <p class="vehicle__prediction">Próxima chegada em aproximadamente: {{(vehicle.prediction/60).toFixed(0).padStart(2, '0') + ' minuto(s)' }}</p>
+    </li>
+  </ul>
+</div>
